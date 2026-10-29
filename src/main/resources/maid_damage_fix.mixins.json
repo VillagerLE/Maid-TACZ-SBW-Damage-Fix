@@ -1,16 +1,13 @@
 {
   "required": true,
-  "package": "com.BEVL.maid_damage_fix.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "refmap": "maid_damage_fix.refmap.json",
+  "minVersion": "0.8.5",
+  "package": "com.BEVL.maid_damage_fix.mixins",
+  "compatibilityLevel": "JAVA_21",
   "injectors": {
     "defaultRequire": 1
   },
-  "minVersion": "0.8",
   "mixins": [
-    "TaczGunHurtMaidEvent",
-    "sbwGunHurtMaidEvent"
-  ],
-  "client": [
+    "TaczGunHurtMaidEventMixin",
+    "SbwGunHurtMaidEventMixin"
   ]
 }

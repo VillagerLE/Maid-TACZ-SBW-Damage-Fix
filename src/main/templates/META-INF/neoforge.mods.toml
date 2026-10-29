@@ -1,0 +1,52 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+authors = "BEVL"
+description = '''
+车万女仆为了避免友伤，会取消所有枪械对女仆造成的伤害，导致敌对枪手的子弹也打不动女仆。
+本模组改写这段判断：只有女仆本人、其主人、盟友以及同主人的其它女仆造成的枪械/爆炸伤害被拦截，
+其余情况照常结算伤害。
+'''
+
+[[mixins]]
+config = "maid_damage_fix.mixins.json"
+
+[[dependencies.${mod_id}]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neo_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "touhou_little_maid"
+type = "required"
+versionRange = "[1.5.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "tacz"
+type = "optional"
+versionRange = "[1.1.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "superbwarfare"
+type = "optional"
+versionRange = "[0.8.0,)"
+ordering = "AFTER"
+side = "BOTH"
