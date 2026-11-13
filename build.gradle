@@ -29,7 +29,7 @@ version = mod_version
 group = mod_group_id
 
 base {
-    archivesName = mod_id
+    archivesName = 'Maid-Damage-Fix'
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -132,12 +132,12 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-     flatDir {
-         dir 'libs'
-    }
     maven {
         name = 'Modrinth'
         url = 'https://api.modrinth.com/maven'
+        content {
+            includeGroup "maven.modrinth"
+        }
     }
     maven {
         url "https://cursemaven.com"
@@ -145,41 +145,16 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    maven { url = "https://api.modrinth.com/maven" }
 }
 
 dependencies {
-    // Specify the version of Minecraft to use.
-    // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
-    // The "userdev" classifier will be requested and setup by ForgeGradle.
-    // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
-    // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    // TLM
-    implementation fg.deobf(files("libs/touhoulittlemaid.jar"))
-    // TacZ
-    implementation fg.deobf(files("libs/tacz.jar"))
-    // sbw
-    implementation fg.deobf(files("libs/superbwarfare.jar"))
-    //other
-    implementation fg.deobf(files("libs/geckolib.jar"))
-    implementation fg.deobf(files("libs/curios.jar"))
-    implementation fg.deobf(files("libs/kotlinforforge.jar"))
-    implementation fg.deobf(fileTree(dir: 'libs', include: ['*.jar']))
-    // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-    // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    // Example mod dependency using a mod jar from ./libs with a flat dir repository
-    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
-    // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
-
-    // For more info:
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    // 基础 Forge 依赖
+    implementation fg.deobf("maven.modrinth:touhou-little-maid:g1SKoGQJ")
+    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:8141310")
+    implementation fg.deobf("maven.modrinth:superb-warfare:LAITrju0")
+    implementation fg.deobf("maven.modrinth:geckolib:aC5KMoNg")
+    implementation fg.deobf("maven.modrinth:curios:IPQlZkz1")
+    implementation fg.deobf("maven.modrinth:kotlin-for-forge:Zsh14XeQ")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
