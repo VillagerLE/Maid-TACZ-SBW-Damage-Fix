@@ -59,6 +59,12 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+    maven {
+        url = "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -147,13 +153,13 @@ configurations {
 }
 
 dependencies {
-    implementation files('libs/[车万女仆] touhoulittlemaid-1.5.3-neoforge+mc1.21.1.jar')
-    implementation files('libs/tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar')
-    implementation files('libs/[卓越前线] superbwarfare-0.8.9.2-mc1.21.1-c22d98c2.jar')
+    implementation "maven.modrinth:touhou-little-maid:tXG1TkGx"
+    implementation "curse.maven:timeless-and-classics-zero-1028108:9454361"
+    implementation "maven.modrinth:superb-warfare:bl7W8fjU"
 
-    localRuntime files('libs/geckolib-neoforge-1.21.1-4.9.3.jar')
-    localRuntime files('libs/curios-neoforge-9.5.1+1.21.1.jar')
-    localRuntime files('libs/kotlinforforge-5.12.0-all.jar')
+    localRuntime "maven.modrinth:geckolib:Grwn5rUB"
+    localRuntime "maven.modrinth:curios:yohfFbgD"
+    localRuntime "maven.modrinth:kotlin-for-forge:uhJhCT7X"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

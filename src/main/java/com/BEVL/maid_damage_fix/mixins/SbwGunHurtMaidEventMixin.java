@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-
 @Mixin(value = GunHurtMaidEvent.class, remap = false)
 public abstract class SbwGunHurtMaidEventMixin {
 
@@ -36,7 +35,6 @@ public abstract class SbwGunHurtMaidEventMixin {
         if (maid.isAlliedTo(attacker)) {
             return true;
         }
-        // Maids with the same owner are friendly to each other
         if (attacker instanceof EntityMaid otherMaid) {
             return maid.getOwnerUUID() != null && maid.getOwnerUUID().equals(otherMaid.getOwnerUUID());
         }
@@ -58,7 +56,6 @@ public abstract class SbwGunHurtMaidEventMixin {
             if (attacker instanceof Projectile projectile) {
                 attacker = projectile.getOwner();
             }
-            // Replace with a strict friendly-fire check so enemy gunners can hurt maids
             if (pillagersGun$isFriendlyFire(maid, attacker)) {
                 event.setCanceled(true);
             }
@@ -81,7 +78,6 @@ public abstract class SbwGunHurtMaidEventMixin {
             Entity finalShooter = shooter;
             event.getAffectedEntities().removeIf(e -> {
                 if (e instanceof EntityMaid maid && maid.getOwnerUUID() != null) {
-                    // Only protect maids from friendly explosions
                     return pillagersGun$isFriendlyFire(maid, finalShooter);
                 }
                 return false;
